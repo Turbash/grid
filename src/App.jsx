@@ -1,8 +1,28 @@
+import { useState } from "react";
 import Playground from "./components/Playground";
 import Instructions from "./components/Instructions";
 import CSSBox from "./components/CSSBox";
 
 function App() {
+  const [level, setLevel] = useState(1);
+  const [customCSS, setCustomCSS] = useState("");
+
+  const handleCSSChange = (css) => {
+    setCustomCSS(css);
+  };
+
+  const handlePreviousLevel = () => {
+    if (level > 1) {
+      setLevel(level - 1);
+      setCustomCSS("");
+    }
+  };
+
+  const handleNextLevel = () => {
+    setLevel(level + 1);
+    setCustomCSS("");
+  };
+
   return (
     <>
       <div className="bg-[#1b2430] flex p-16">
@@ -14,7 +34,11 @@ function App() {
                 <span className="underline decoration-wavy">Grid</span>
               </h1>
               <p className="mt-6 flex items-center rounded-md bg-gray-500 bg-opacity-25 px-4 py-1 text-gray-300 md:mt-0">
-                <button className="mr-1 cursor-pointer text-3xl">
+                <button
+                  onClick={handlePreviousLevel}
+                  disabled={level === 1}
+                  className="mr-1 cursor-pointer text-3xl disabled:opacity-50"
+                >
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
@@ -30,14 +54,17 @@ function App() {
                     <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
                   </svg>
                 </button>
-                Level <span className="ml-2 block font-fredoka">16</span>
-                <button className="ml-1 cursor-pointer text-3xl">
+                Level <span className="ml-2 block font-fredoka">{level}</span>
+                <button
+                  onClick={handleNextLevel}
+                  className="ml-1 cursor-pointer text-3xl"
+                >
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
                     strokeWidth="0"
                     viewBox="0 0 24 24"
-                    aria-label="Go to the previous level"
+                    aria-label="Go to the next level"
                     height="1em"
                     width="1em"
                     xmlns="http://www.w3.org/2000/svg"
@@ -49,12 +76,12 @@ function App() {
                 </button>
               </p>
             </div>
-            <Instructions text="Follow the steps to get started!" />
-            <CSSBox />
+            <Instructions text="Follow the steps to get started!" level={level} />
+            <CSSBox onCSSChange={handleCSSChange} level={level} />
           </div>
         </div>
         <div className="w-[50%]">
-          <Playground />
+          <Playground customCSS={customCSS} />
         </div>
       </div>
     </>

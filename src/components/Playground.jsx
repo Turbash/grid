@@ -2,12 +2,26 @@ import React from "react";
 import background from "../assets/background.webp";
 import apple from "../assets/apple.webp";
 import grapes from "../assets/grapes.webp";
-import banana from "../assets/banana.webp";
 import red_basket from "../assets/red_basket.webp";
 import violet_basket from "../assets/violet_basket.webp";
-import yellow_basket from "../assets/yellow_basket.webp";
 
-const Playground = () => {
+const Playground = ({ customCSS }) => {
+  const getItemStyle = () => {
+    const style = {};
+    if (customCSS) {
+      const props = customCSS.split(";").filter((p) => p.trim());
+      props.forEach((prop) => {
+        const [key, value] = prop.split(":").map((s) => s.trim());
+        if (key && value) {
+          const camelKey = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+          style[camelKey] = value;
+        }
+      });
+    }
+    console.log("Applied styles:", style);
+    return style;
+  };
+
   return (
     <div className="p-16 relative">
       <div
@@ -18,80 +32,116 @@ const Playground = () => {
         }}
       >
         <div className="relative mx-auto h-full w-[98%] max-w-[1000px] lg:ml-0 lg:mr-auto">
-          <div id="container" className="flex h-full px-16 py-20 lg:p-24">
-            <div id="apple" className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
+          <div
+            id="baskets"
+            className="absolute bottom-0 left-0 right-0 px-16 pb-20 lg:px-24 lg:pb-24"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(5, 1fr)",
+              gap: "1rem",
+              pointerEvents: "none",
+            }}
+          >
+            <div className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
               <img
-                alt="fruit"
-                className="mx-auto h-[70%] w-[70%] animate-bounce drop-shadow-xl"
-                src={apple}
+                alt="red basket"
+                className="animate-pulse drop-shadow-2xl"
+                src={red_basket}
               />
             </div>
-            <div id="grapes" className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
+            <div className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
               <img
-                alt="fruit"
-                className="mx-auto h-[70%] w-[70%] animate-bounce drop-shadow-xl"
-                src={grapes}
+                alt="purple basket"
+                className="animate-pulse drop-shadow-2xl"
+                src={violet_basket}
               />
             </div>
-            <div id="apple" className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
+            <div className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
               <img
-                alt="fruit"
-                className="mx-auto h-[70%] w-[70%] animate-bounce drop-shadow-xl"
-                src={apple}
+                alt="red basket"
+                className="animate-pulse drop-shadow-2xl"
+                src={red_basket}
               />
             </div>
-            <div id="grapes" className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
+            <div className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
               <img
-                alt="fruit"
-                className="mx-auto h-[70%] w-[70%] animate-bounce drop-shadow-xl"
-                src={grapes}
+                alt="purple basket"
+                className="animate-pulse drop-shadow-2xl"
+                src={violet_basket}
               />
             </div>
-            <div id="grapes" className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
+            <div className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
               <img
-                alt="fruit"
-                className="mx-auto h-[70%] w-[70%] animate-bounce drop-shadow-xl"
-                src={grapes}
+                alt="purple basket"
+                className="animate-pulse drop-shadow-2xl"
+                src={violet_basket}
               />
             </div>
           </div>
+
           <div
-            id="master"
-            className="absolute inset-0 flex px-16 py-20 lg:p-24"
+            id="container"
+            className="absolute inset-0 px-16 py-20 lg:px-24 lg:py-24"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(5, 1fr)",
+              gap: "1rem",
+              alignItems: "start", // Default alignment
+            }}
           >
-            <div id="red" className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
+            <div
+              id="item"
+              className="h-10 w-10 lg:h-[70px] lg:w-[70px]"
+              style={getItemStyle()}
+            >
               <img
-                alt="basket"
-                className="animate-pulse drop-shadow-2xl"
-                src={red_basket}
+                alt="apple"
+                className="mx-auto h-[70%] w-[70%] animate-bounce drop-shadow-xl"
+                src={apple}
               />
             </div>
-            <div id="violet" className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
+            <div
+              id="item"
+              className="h-10 w-10 lg:h-[70px] lg:w-[70px]"
+              style={getItemStyle()}
+            >
               <img
-                alt="basket"
-                className="animate-pulse drop-shadow-2xl"
-                src={violet_basket}
+                alt="grapes"
+                className="mx-auto h-[70%] w-[70%] animate-bounce drop-shadow-xl"
+                src={grapes}
               />
             </div>
-            <div id="red" className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
+            <div
+              id="item"
+              className="h-10 w-10 lg:h-[70px] lg:w-[70px]"
+              style={getItemStyle()}
+            >
               <img
-                alt="basket"
-                className="animate-pulse drop-shadow-2xl"
-                src={red_basket}
+                alt="apple"
+                className="mx-auto h-[70%] w-[70%] animate-bounce drop-shadow-xl"
+                src={apple}
               />
             </div>
-            <div id="violet" className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
+            <div
+              id="item"
+              className="h-10 w-10 lg:h-[70px] lg:w-[70px]"
+              style={getItemStyle()}
+            >
               <img
-                alt="basket"
-                className="animate-pulse drop-shadow-2xl"
-                src={violet_basket}
+                alt="grapes"
+                className="mx-auto h-[70%] w-[70%] animate-bounce drop-shadow-xl"
+                src={grapes}
               />
             </div>
-            <div id="violet" className="h-10 w-10 lg:h-[70px] lg:w-[70px]">
+            <div
+              id="item"
+              className="h-10 w-10 lg:h-[70px] lg:w-[70px]"
+              style={getItemStyle()}
+            >
               <img
-                alt="basket"
-                className="animate-pulse drop-shadow-2xl"
-                src={violet_basket}
+                alt="grapes"
+                className="mx-auto h-[70%] w-[70%] animate-bounce drop-shadow-xl"
+                src={grapes}
               />
             </div>
           </div>
