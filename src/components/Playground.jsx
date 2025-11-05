@@ -86,7 +86,7 @@ const Playground = ({ customCSS }) => {
               display: "grid",
               gridTemplateColumns: "repeat(5, 1fr)",
               gap: "1rem",
-              alignItems: "start", // Default alignment
+              alignItems: "start", 
             }}
           >
             <div
