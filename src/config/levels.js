@@ -1,0 +1,259 @@
+export const levelConfigs = {
+  1: {
+    instructions: "Turn the container into a grid layout to organize the fruits!",
+    gridCSS: {},
+    placeholder: "display: grid;",
+    maxLines: 1,
+    acceptedAnswers: ["display: grid;", "display:grid;", "display: grid", "display:grid"],
+    fruits: [
+      { type: "apple", initialPosition: 1, correctPosition: 1 },
+    ],
+    baskets: [
+      { type: "red", position: 1 },
+    ],
+    containerLayout: "simple",
+    cssTarget: "container",
+  },
+  2: {
+    instructions: "Create 3 equal columns using grid-template-columns!",
+    gridCSS: {
+      display: "grid",
+      gap: "1rem",
+    },
+    placeholder: "grid-template-columns: 1fr 1fr 1fr;",
+    maxLines: 1,
+    acceptedAnswers: [
+      "grid-template-columns: 1fr 1fr 1fr;",
+      "grid-template-columns:1fr 1fr 1fr;",
+      "grid-template-columns: repeat(3, 1fr);",
+      "grid-template-columns:repeat(3, 1fr);",
+      "grid-template-columns: repeat(3,1fr);",
+      "grid-template-columns:repeat(3,1fr);"
+    ],
+    fruits: [
+      { type: "apple", initialPosition: 1, correctPosition: 1 },
+      { type: "banana", initialPosition: 2, correctPosition: 2 },
+      { type: "grapes", initialPosition: 3, correctPosition: 3 },
+    ],
+    baskets: [
+      { type: "red", position: 1 },
+      { type: "yellow", position: 2 },
+      { type: "violet", position: 3 },
+    ],
+    containerLayout: "columns",
+    cssTarget: "container",
+  },
+  3: {
+    instructions: "Create 3 rows with different heights: 100px, auto, 1fr!",
+    gridCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: "1rem",
+    },
+    placeholder: "grid-template-rows: 100px auto 1fr;",
+    maxLines: 1,
+    acceptedAnswers: [
+      "grid-template-rows: 100px auto 1fr;",
+      "grid-template-rows:100px auto 1fr;",
+      "grid-template-rows: 100px auto 1fr",
+      "grid-template-rows:100px auto 1fr"
+    ],
+    fruits: [
+      { type: "apple", initialPosition: 1, correctPosition: 1 },
+      { type: "banana", initialPosition: 2, correctPosition: 4 },
+      { type: "grapes", initialPosition: 3, correctPosition: 7 },
+    ],
+    baskets: [
+      { type: "red", position: 1 },
+      { type: "yellow", position: 4 },
+      { type: "violet", position: 7 },
+    ],
+    containerLayout: "rows",
+    cssTarget: "container",
+  },
+  4: {
+    instructions: "Add gap between grid items using the gap property!",
+    gridCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+    },
+    placeholder: "gap: 2rem;",
+    maxLines: 1,
+    acceptedAnswers: [
+      "gap: 2rem;",
+      "gap:2rem;",
+      "gap: 2rem",
+      "gap:2rem"
+    ],
+    fruits: [
+      { type: "apple", initialPosition: 1, correctPosition: 1 },
+      { type: "banana", initialPosition: 2, correctPosition: 2 },
+      { type: "grapes", initialPosition: 3, correctPosition: 3 },
+    ],
+    baskets: [
+      { type: "red", position: 1 },
+      { type: "yellow", position: 2 },
+      { type: "violet", position: 3 },
+    ],
+    containerLayout: "simple",
+    cssTarget: "container",
+  },
+  5: {
+    instructions: "Move the apple to column 3 using grid-column!",
+    gridCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: "1rem",
+    },
+    placeholder: "grid-column: 3;",
+    maxLines: 1,
+    acceptedAnswers: ["grid-column: 3;", "grid-column:3;", "grid-column: 3", "grid-column:3"],
+    fruits: [
+      { type: "apple", initialPosition: 1, correctPosition: 3 },
+    ],
+    baskets: [
+      { type: "red", position: 3 },
+    ],
+    containerLayout: "simple",
+    cssTarget: "item",
+  },
+  6: {
+    instructions: "Move the grapes to row 2 using grid-row!",
+    gridCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gridTemplateRows: "repeat(3, 100px)",
+      gap: "1rem",
+    },
+    placeholder: "grid-row: 2;",
+    maxLines: 1,
+    acceptedAnswers: ["grid-row: 2;", "grid-row:2;", "grid-row: 2", "grid-row:2"],
+    fruits: [
+      { type: "grapes", initialPosition: 1, correctPosition: 4 },
+    ],
+    baskets: [
+      { type: "violet", position: 4 },
+    ],
+    containerLayout: "rows",
+    cssTarget: "item",
+  },
+  7: {
+    instructions: "Set grid-auto-rows to 150px for automatically created rows!",
+    gridCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(2, 1fr)",
+      gridTemplateRows: "100px 100px",
+      gap: "1rem",
+    },
+    placeholder: "grid-auto-rows: 150px;",
+    maxLines: 1,
+    acceptedAnswers: [
+      "grid-auto-rows: 150px;",
+      "grid-auto-rows:150px;",
+      "grid-auto-rows: 150px",
+      "grid-auto-rows:150px"
+    ],
+    fruits: [
+      { type: "apple", initialPosition: 1, correctPosition: 1 },
+      { type: "banana", initialPosition: 2, correctPosition: 2 },
+      { type: "grapes", initialPosition: 3, correctPosition: 5 },
+    ],
+    baskets: [
+      { type: "red", position: 1 },
+      { type: "yellow", position: 2 },
+      { type: "violet", position: 5 },
+    ],
+    containerLayout: "auto-rows",
+    cssTarget: "container",
+  },
+  8: {
+    instructions: "Set grid-auto-columns to 200px for automatically created columns!",
+    gridCSS: {
+      display: "grid",
+      gridTemplateRows: "repeat(2, 100px)",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "1rem",
+    },
+    placeholder: "grid-auto-columns: 200px;",
+    maxLines: 1,
+    acceptedAnswers: [
+      "grid-auto-columns: 200px;",
+      "grid-auto-columns:200px;",
+      "grid-auto-columns: 200px",
+      "grid-auto-columns:200px"
+    ],
+    fruits: [
+      { type: "apple", initialPosition: 1, correctPosition: 1 },
+      { type: "banana", initialPosition: 2, correctPosition: 2 },
+      { type: "grapes", initialPosition: 3, correctPosition: 5 },
+    ],
+    baskets: [
+      { type: "red", position: 1 },
+      { type: "yellow", position: 2 },
+      { type: "violet", position: 5 },
+    ],
+    containerLayout: "auto-columns",
+    cssTarget: "container",
+  },
+  9: {
+    instructions: "Set grid-auto-flow to 'column' to flow items column-wise!",
+    gridCSS: {
+      display: "grid",
+      gridTemplateRows: "repeat(3, 100px)",
+      gridTemplateColumns: "repeat(2, 1fr)",
+      gap: "1rem",
+    },
+    placeholder: "grid-auto-flow: column;",
+    maxLines: 1,
+    acceptedAnswers: [
+      "grid-auto-flow: column;",
+      "grid-auto-flow:column;",
+      "grid-auto-flow: column",
+      "grid-auto-flow:column"
+    ],
+    fruits: [
+      { type: "apple", initialPosition: 1, correctPosition: 1 },
+      { type: "banana", initialPosition: 2, correctPosition: 4 },
+      { type: "grapes", initialPosition: 3, correctPosition: 2 },
+    ],
+    baskets: [
+      { type: "red", position: 1 },
+      { type: "yellow", position: 4 },
+      { type: "violet", position: 2 },
+    ],
+    containerLayout: "auto-flow",
+    cssTarget: "container",
+  },
+  10: {
+    instructions: "Use justify-items to center items horizontally in their cells!",
+    gridCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: "1rem",
+    },
+    placeholder: "justify-items: center;",
+    maxLines: 1,
+    acceptedAnswers: [
+      "justify-items: center;",
+      "justify-items:center;",
+      "justify-items: center",
+      "justify-items:center"
+    ],
+    fruits: [
+      { type: "apple", initialPosition: 1, correctPosition: 1 },
+      { type: "banana", initialPosition: 2, correctPosition: 2 },
+      { type: "grapes", initialPosition: 3, correctPosition: 3 },
+    ],
+    baskets: [
+      { type: "red", position: 1 },
+      { type: "yellow", position: 2 },
+      { type: "violet", position: 3 },
+    ],
+    containerLayout: "simple",
+    cssTarget: "container",
+  },
+};
+
+export const getLevel = (levelNumber) => {
+  return levelConfigs[levelNumber] || levelConfigs[1];
+};

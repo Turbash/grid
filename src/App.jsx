@@ -2,25 +2,54 @@ import { useState } from "react";
 import Playground from "./components/Playground";
 import Instructions from "./components/Instructions";
 import CSSBox from "./components/CSSBox";
+import { getLevel } from "./config/levels";
 
 function App() {
   const [level, setLevel] = useState(1);
   const [customCSS, setCustomCSS] = useState("");
+  const [isCorrect, setIsCorrect] = useState(null); 
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleCSSChange = (css) => {
     setCustomCSS(css);
+    setIsCorrect(null); 
+  };
+
+  const handleSubmit = () => {
+    const levelConfig = getLevel(level);
+    const userCSS = customCSS.trim().toLowerCase();
+    
+    const isAnswerCorrect = levelConfig.acceptedAnswers.some(answer => 
+      userCSS === answer.toLowerCase().trim()
+    );
+    
+    setIsCorrect(isAnswerCorrect);
+    
+    if (isAnswerCorrect) {
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+        setLevel(level + 1);
+        setCustomCSS("");
+        setIsCorrect(null);
+      }, 2000);
+    }
   };
 
   const handlePreviousLevel = () => {
     if (level > 1) {
       setLevel(level - 1);
       setCustomCSS("");
+      setIsCorrect(null);
+      setShowSuccess(false);
     }
   };
 
   const handleNextLevel = () => {
     setLevel(level + 1);
     setCustomCSS("");
+    setIsCorrect(null);
+    setShowSuccess(false);
   };
 
   return (
@@ -76,12 +105,30 @@ function App() {
                 </button>
               </p>
             </div>
-            <Instructions text="Follow the steps to get started!" level={level} />
-            <CSSBox onCSSChange={handleCSSChange} level={level} />
+            
+            <Instructions level={level} />
+            <CSSBox 
+              onCSSChange={handleCSSChange} 
+              level={level} 
+              onSubmit={handleSubmit}
+              isCorrect={isCorrect}
+            />
+            
+            {showSuccess && (
+              <div className="mx-auto mt-4 max-w-lg rounded-md bg-green-500 px-6 py-3 text-center text-white font-bold">
+                🎉 Correct! Moving to next level...
+              </div>
+            )}
+            
+            {isCorrect === false && (
+              <div className="mx-auto mt-4 max-w-lg rounded-md bg-red-500 px-6 py-3 text-center text-white font-bold">
+                ❌ Not quite right. Try again!
+              </div>
+            )}
           </div>
         </div>
         <div className="w-[50%]">
-          <Playground customCSS={customCSS} />
+          <Playground customCSS={customCSS} level={level} isCorrect={isCorrect} />
         </div>
       </div>
     </>
