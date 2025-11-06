@@ -12,8 +12,36 @@ const basketImages = {
 
 const BasketGrid = ({ baskets, gridStyle, containerClass, level }) => {
   const levelConfig = getLevel(level);
-  
-  const getBasketPositioning = (basket) => {
+
+  const getBasketGridStyle = () => {
+    return { ...gridStyle, ...levelConfig.basketCSS };
+  };
+
+  const getBasketPositioning = (basket, index) => {
+    if (levelConfig.cssTarget === "item") {
+      const correspondingFruit = levelConfig.fruits[index];
+      if (correspondingFruit) {
+        switch (levelConfig.containerLayout) {
+          case "rows":
+          case "auto-rows":
+            return { gridRow: correspondingFruit.correctPosition };
+          default:
+            return { gridColumn: correspondingFruit.correctPosition };
+        }
+      }
+    }
+
+    const correspondingFruit = levelConfig.fruits[index];
+    if (correspondingFruit) {
+      switch (levelConfig.containerLayout) {
+        case "rows":
+        case "auto-rows":
+          return { gridRow: correspondingFruit.correctPosition };
+        default:
+          return { gridColumn: correspondingFruit.correctPosition };
+      }
+    }
+
     switch (levelConfig.containerLayout) {
       case "rows":
       case "auto-rows":
@@ -24,16 +52,12 @@ const BasketGrid = ({ baskets, gridStyle, containerClass, level }) => {
   };
 
   return (
-    <div
-      id="baskets"
-      className={containerClass}
-      style={gridStyle}
-    >
+    <div id="baskets" className={containerClass} style={getBasketGridStyle()}>
       {baskets.map((basket, index) => (
         <div
           key={`basket-${index}`}
           className="h-10 w-10 lg:h-[70px] lg:w-[70px]"
-          style={getBasketPositioning(basket)}
+          style={getBasketPositioning(basket, index)}
         >
           <img
             alt={`${basket.type} basket`}

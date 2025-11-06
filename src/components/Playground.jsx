@@ -46,25 +46,13 @@ const Playground = ({ customCSS, level, isCorrect }) => {
   };
 
   const getFruitGridStyle = () => {
-    if (level === 1) {
-      const hasDisplayGrid = isCorrect === true || 
-        (customCSS.toLowerCase().includes('display') && customCSS.toLowerCase().includes('grid'));
-      
-      return hasDisplayGrid ? {
+    return (
+      levelConfig.fruitCSS || {
         display: "grid",
         gridTemplateColumns: "repeat(3, 1fr)",
         gap: "1rem",
-      } : {
-        display: "flex",
-        gap: "2rem",
-        alignItems: "center",
-      };
-    }
-    return levelConfig.gridCSS || {
-      display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gap: "1rem",
-    };
+      }
+    );
   };
 
   const basketGridStyle = getBasketGridStyle();

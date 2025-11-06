@@ -1,22 +1,37 @@
 export const levelConfigs = {
   1: {
-    instructions: "Turn the container into a grid layout to organize the fruits!",
-    gridCSS: {},
+    instructions:
+      "Turn the container into a grid layout to organize the fruits!",
+    basketCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: "1rem",
+    },
+    fruitCSS: {
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: "1rem",
+    },
     placeholder: "display: grid;",
     maxLines: 1,
-    acceptedAnswers: ["display: grid;", "display:grid;", "display: grid", "display:grid"],
-    fruits: [
-      { type: "apple", initialPosition: 1, correctPosition: 1 },
+    acceptedAnswers: [
+      "display: grid;",
+      "display:grid;",
+      "display: grid",
+      "display:grid",
     ],
-    baskets: [
-      { type: "red", position: 1 },
-    ],
+    fruits: [{ type: "apple", initialPosition: 1, correctPosition: 1 }],
+    baskets: [{ type: "red", position: 1 }],
     containerLayout: "simple",
     cssTarget: "container",
   },
   2: {
     instructions: "Create 3 equal columns using grid-template-columns!",
-    gridCSS: {
+    basketCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: "1rem",
+    },
+    fruitCSS: {
       display: "grid",
       gap: "1rem",
     },
@@ -28,7 +43,7 @@ export const levelConfigs = {
       "grid-template-columns: repeat(3, 1fr);",
       "grid-template-columns:repeat(3, 1fr);",
       "grid-template-columns: repeat(3,1fr);",
-      "grid-template-columns:repeat(3,1fr);"
+      "grid-template-columns:repeat(3,1fr);",
     ],
     fruits: [
       { type: "apple", initialPosition: 1, correctPosition: 1 },
@@ -45,7 +60,13 @@ export const levelConfigs = {
   },
   3: {
     instructions: "Create 3 rows with different heights: 100px, auto, 1fr!",
-    gridCSS: {
+    basketCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gridTemplateRows: "100px auto 1fr",
+      gap: "1rem",
+    },
+    fruitCSS: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: "1rem",
@@ -56,7 +77,7 @@ export const levelConfigs = {
       "grid-template-rows: 100px auto 1fr;",
       "grid-template-rows:100px auto 1fr;",
       "grid-template-rows: 100px auto 1fr",
-      "grid-template-rows:100px auto 1fr"
+      "grid-template-rows:100px auto 1fr",
     ],
     fruits: [
       { type: "apple", initialPosition: 1, correctPosition: 1 },
@@ -73,18 +94,18 @@ export const levelConfigs = {
   },
   4: {
     instructions: "Add gap between grid items using the gap property!",
-    gridCSS: {
+    basketCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: "2rem",
+    },
+    fruitCSS: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
     },
     placeholder: "gap: 2rem;",
     maxLines: 1,
-    acceptedAnswers: [
-      "gap: 2rem;",
-      "gap:2rem;",
-      "gap: 2rem",
-      "gap:2rem"
-    ],
+    acceptedAnswers: ["gap: 2rem;", "gap:2rem;", "gap: 2rem", "gap:2rem"],
     fruits: [
       { type: "apple", initialPosition: 1, correctPosition: 1 },
       { type: "banana", initialPosition: 2, correctPosition: 2 },
@@ -100,26 +121,38 @@ export const levelConfigs = {
   },
   5: {
     instructions: "Move the apple to column 3 using grid-column!",
-    gridCSS: {
+    basketCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: "1rem",
+    },
+    fruitCSS: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: "1rem",
     },
     placeholder: "grid-column: 3;",
     maxLines: 1,
-    acceptedAnswers: ["grid-column: 3;", "grid-column:3;", "grid-column: 3", "grid-column:3"],
-    fruits: [
-      { type: "apple", initialPosition: 1, correctPosition: 3 },
+    acceptedAnswers: [
+      "grid-column: 3;",
+      "grid-column:3;",
+      "grid-column: 3",
+      "grid-column:3",
     ],
-    baskets: [
-      { type: "red", position: 3 },
-    ],
+    fruits: [{ type: "apple", initialPosition: 1, correctPosition: 3 }],
+    baskets: [{ type: "red", position: 3 }],
     containerLayout: "simple",
     cssTarget: "item",
   },
   6: {
     instructions: "Move the grapes to row 2 using grid-row!",
-    gridCSS: {
+    basketCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gridTemplateRows: "repeat(3, 100px)",
+      gap: "1rem",
+    },
+    fruitCSS: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
       gridTemplateRows: "repeat(3, 100px)",
@@ -127,19 +160,27 @@ export const levelConfigs = {
     },
     placeholder: "grid-row: 2;",
     maxLines: 1,
-    acceptedAnswers: ["grid-row: 2;", "grid-row:2;", "grid-row: 2", "grid-row:2"],
-    fruits: [
-      { type: "grapes", initialPosition: 1, correctPosition: 4 },
+    acceptedAnswers: [
+      "grid-row: 2;",
+      "grid-row:2;",
+      "grid-row: 2",
+      "grid-row:2",
     ],
-    baskets: [
-      { type: "violet", position: 4 },
-    ],
+    fruits: [{ type: "grapes", initialPosition: 1, correctPosition: 4 }],
+    baskets: [{ type: "violet", position: 4 }],
     containerLayout: "rows",
     cssTarget: "item",
   },
   7: {
     instructions: "Set grid-auto-rows to 150px for automatically created rows!",
-    gridCSS: {
+    basketCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(2, 1fr)",
+      gridTemplateRows: "100px 100px",
+      gridAutoRows: "150px",
+      gap: "1rem",
+    },
+    fruitCSS: {
       display: "grid",
       gridTemplateColumns: "repeat(2, 1fr)",
       gridTemplateRows: "100px 100px",
@@ -151,7 +192,7 @@ export const levelConfigs = {
       "grid-auto-rows: 150px;",
       "grid-auto-rows:150px;",
       "grid-auto-rows: 150px",
-      "grid-auto-rows:150px"
+      "grid-auto-rows:150px",
     ],
     fruits: [
       { type: "apple", initialPosition: 1, correctPosition: 1 },
@@ -167,8 +208,16 @@ export const levelConfigs = {
     cssTarget: "container",
   },
   8: {
-    instructions: "Set grid-auto-columns to 200px for automatically created columns!",
-    gridCSS: {
+    instructions:
+      "Set grid-auto-columns to 200px for automatically created columns!",
+    basketCSS: {
+      display: "grid",
+      gridTemplateRows: "repeat(2, 100px)",
+      gridTemplateColumns: "1fr 1fr",
+      gridAutoColumns: "200px",
+      gap: "1rem",
+    },
+    fruitCSS: {
       display: "grid",
       gridTemplateRows: "repeat(2, 100px)",
       gridTemplateColumns: "1fr 1fr",
@@ -180,7 +229,7 @@ export const levelConfigs = {
       "grid-auto-columns: 200px;",
       "grid-auto-columns:200px;",
       "grid-auto-columns: 200px",
-      "grid-auto-columns:200px"
+      "grid-auto-columns:200px",
     ],
     fruits: [
       { type: "apple", initialPosition: 1, correctPosition: 1 },
@@ -197,7 +246,14 @@ export const levelConfigs = {
   },
   9: {
     instructions: "Set grid-auto-flow to 'column' to flow items column-wise!",
-    gridCSS: {
+    basketCSS: {
+      display: "grid",
+      gridTemplateRows: "repeat(3, 100px)",
+      gridTemplateColumns: "repeat(2, 1fr)",
+      gridAutoFlow: "column",
+      gap: "1rem",
+    },
+    fruitCSS: {
       display: "grid",
       gridTemplateRows: "repeat(3, 100px)",
       gridTemplateColumns: "repeat(2, 1fr)",
@@ -209,7 +265,7 @@ export const levelConfigs = {
       "grid-auto-flow: column;",
       "grid-auto-flow:column;",
       "grid-auto-flow: column",
-      "grid-auto-flow:column"
+      "grid-auto-flow:column",
     ],
     fruits: [
       { type: "apple", initialPosition: 1, correctPosition: 1 },
@@ -225,8 +281,15 @@ export const levelConfigs = {
     cssTarget: "container",
   },
   10: {
-    instructions: "Use justify-items to center items horizontally in their cells!",
-    gridCSS: {
+    instructions:
+      "Use justify-items to center items horizontally in their cells!",
+    basketCSS: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: "1rem",
+      justifyItems: "center",
+    },
+    fruitCSS: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: "1rem",
@@ -237,7 +300,7 @@ export const levelConfigs = {
       "justify-items: center;",
       "justify-items:center;",
       "justify-items: center",
-      "justify-items:center"
+      "justify-items:center",
     ],
     fruits: [
       { type: "apple", initialPosition: 1, correctPosition: 1 },

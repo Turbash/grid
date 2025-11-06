@@ -7,31 +7,42 @@ import { getLevel } from "./config/levels";
 function App() {
   const [level, setLevel] = useState(1);
   const [customCSS, setCustomCSS] = useState("");
-  const [isCorrect, setIsCorrect] = useState(null); 
+  const [isCorrect, setIsCorrect] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isPreviewCorrect, setIsPreviewCorrect] = useState(false);
+
+  const checkIfCorrect = (css) => {
+    const levelConfig = getLevel(level);
+    const userCSS = css.trim().toLowerCase();
+
+    return levelConfig.acceptedAnswers.some(
+      (answer) => userCSS === answer.toLowerCase().trim()
+    );
+  };
 
   const handleCSSChange = (css) => {
     setCustomCSS(css);
-    setIsCorrect(null); 
+    setIsCorrect(null);
+
+    const isCurrentlyCorrect = checkIfCorrect(css);
+    setIsPreviewCorrect(isCurrentlyCorrect);
   };
 
   const handleSubmit = () => {
-    const levelConfig = getLevel(level);
-    const userCSS = customCSS.trim().toLowerCase();
-    
-    const isAnswerCorrect = levelConfig.acceptedAnswers.some(answer => 
-      userCSS === answer.toLowerCase().trim()
-    );
-    
+    const isAnswerCorrect = checkIfCorrect(customCSS);
+
     setIsCorrect(isAnswerCorrect);
-    
+
     if (isAnswerCorrect) {
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-        setLevel(level + 1);
-        setCustomCSS("");
-        setIsCorrect(null);
+        if (level < 10) {
+          setLevel(level + 1);
+          setCustomCSS("");
+          setIsCorrect(null);
+          setIsPreviewCorrect(false);
+        }
       }, 2000);
     }
   };
@@ -42,14 +53,18 @@ function App() {
       setCustomCSS("");
       setIsCorrect(null);
       setShowSuccess(false);
+      setIsPreviewCorrect(false);
     }
   };
 
   const handleNextLevel = () => {
-    setLevel(level + 1);
-    setCustomCSS("");
-    setIsCorrect(null);
-    setShowSuccess(false);
+    if (level < 10) {
+      setLevel(level + 1);
+      setCustomCSS("");
+      setIsCorrect(null);
+      setShowSuccess(false);
+      setIsPreviewCorrect(false);
+    }
   };
 
   return (
@@ -86,7 +101,8 @@ function App() {
                 Level <span className="ml-2 block font-fredoka">{level}</span>
                 <button
                   onClick={handleNextLevel}
-                  className="ml-1 cursor-pointer text-3xl"
+                  disabled={level >= 10}
+                  className="ml-1 cursor-pointer text-3xl disabled:opacity-50"
                 >
                   <svg
                     stroke="currentColor"
@@ -105,21 +121,21 @@ function App() {
                 </button>
               </p>
             </div>
-            
+
             <Instructions level={level} />
-            <CSSBox 
-              onCSSChange={handleCSSChange} 
-              level={level} 
+            <CSSBox
+              onCSSChange={handleCSSChange}
+              level={level}
               onSubmit={handleSubmit}
               isCorrect={isCorrect}
             />
-            
+
             {showSuccess && (
               <div className="mx-auto mt-4 max-w-lg rounded-md bg-green-500 px-6 py-3 text-center text-white font-bold">
                 🎉 Correct! Moving to next level...
               </div>
             )}
-            
+
             {isCorrect === false && (
               <div className="mx-auto mt-4 max-w-lg rounded-md bg-red-500 px-6 py-3 text-center text-white font-bold">
                 ❌ Not quite right. Try again!
@@ -128,7 +144,11 @@ function App() {
           </div>
         </div>
         <div className="w-[50%]">
-          <Playground customCSS={customCSS} level={level} isCorrect={isCorrect} />
+          <Playground
+            customCSS={customCSS}
+            level={level}
+            isCorrect={isCorrect !== null ? isCorrect : isPreviewCorrect}
+          />
         </div>
       </div>
     </>
