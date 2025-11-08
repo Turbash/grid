@@ -707,6 +707,58 @@ export const flexLevelConfigs = {
     containerLayout: "simple",
     cssTarget: "container",
   },
+  18: {
+    instructions:
+      "Use flex properties to place the fruits in the correct baskets",
+    basketCSS: {
+      display: "flex",
+      flexWrap: "wrap",
+      alignContent: "flex-end",
+      gap: "1rem",
+      height: "100%",
+      width: "100%",
+    },
+    fruitCSS: {
+      display: "flex",
+      gap: "1rem",
+      height: "100%",
+      width: "100%",
+    },
+    missingProps: ["flex-wrap:wrap", "align-content:flex-end"],
+    maxLines: 2,
+    acceptedAnswers: [
+      "flex-wrap: wrap;\nalign-content: flex-end;",
+      "flex-wrap:wrap;\nalign-content:flex-end;",
+      "flex-wrap: wrap; align-content: flex-end;",
+      "flex-wrap: wrap;align-content: flex-end;",
+      "align-content: flex-end;\nflex-wrap: wrap;",
+      "align-content:flex-end;\nflex-wrap:wrap;",
+      "align-content: flex-end; flex-wrap: wrap;",
+      "align-content: flex-end;flex-wrap: wrap;",
+    ],
+    fruits: [
+      { type: "grapes", initialPosition: 1, correctPosition: 1 },
+      { type: "grapes", initialPosition: 1, correctPosition: 1 },
+      { type: "grapes", initialPosition: 1, correctPosition: 1 },
+      { type: "grapes", initialPosition: 1, correctPosition: 1 },
+      { type: "grapes", initialPosition: 1, correctPosition: 1 },
+      { type: "grapes", initialPosition: 1, correctPosition: 1 },
+      { type: "grapes", initialPosition: 1, correctPosition: 1 },
+      { type: "grapes", initialPosition: 1, correctPosition: 1 },
+    ],
+    baskets: [
+      { type: "violet", position: 1 },
+      { type: "violet", position: 1 },
+      { type: "violet", position: 1 },
+      { type: "violet", position: 1 },
+      { type: "violet", position: 1 },
+      { type: "violet", position: 1 },
+      { type: "violet", position: 1 },
+      { type: "violet", position: 1 },
+    ],
+    containerLayout: "simple",
+    cssTarget: "container",
+  },
 };
 
 export const getFlexLevel = (levelNumber) => {
