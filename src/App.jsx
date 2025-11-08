@@ -18,37 +18,42 @@ function App() {
   };
 
   const getMaxLevels = () => {
-    return mode === "grid" ? 10 : 14; 
+    return mode === "grid" ? 10 : 15;
   };
 
   const checkIfCorrect = (css) => {
     const levelConfig = getCurrentLevelConfig();
     const userCSS = (css || "").trim().toLowerCase();
 
-    if (Array.isArray(levelConfig.missingProps) && levelConfig.missingProps.length) {
+    if (
+      Array.isArray(levelConfig.missingProps) &&
+      levelConfig.missingProps.length
+    ) {
       const providedDeclarations = new Set();
       const providedProperties = new Set();
       const props = userCSS
         .split(/;|\n/)
         .map((s) => s.trim())
         .filter(Boolean);
-      
+
       props.forEach((prop) => {
-        const colonIndex = prop.indexOf(':');
+        const colonIndex = prop.indexOf(":");
         if (colonIndex > 0) {
           const key = prop.substring(0, colonIndex).trim();
           const value = prop.substring(colonIndex + 1).trim();
           if (key && value) {
             providedProperties.add(key.toLowerCase());
-            providedDeclarations.add(`${key}:${value}`.toLowerCase().replace(/\s+/g, ''));
+            providedDeclarations.add(
+              `${key}:${value}`.toLowerCase().replace(/\s+/g, "")
+            );
           }
         }
       });
 
       return levelConfig.missingProps.every((req) => {
-        const reqLower = req.toLowerCase().replace(/\s+/g, '');
-        
-        if (req.includes(':')) {
+        const reqLower = req.toLowerCase().replace(/\s+/g, "");
+
+        if (req.includes(":")) {
           return providedDeclarations.has(reqLower);
         } else {
           return providedProperties.has(reqLower);
@@ -57,7 +62,9 @@ function App() {
     }
 
     return Array.isArray(levelConfig.acceptedAnswers)
-      ? levelConfig.acceptedAnswers.some((answer) => userCSS === answer.toLowerCase().trim())
+      ? levelConfig.acceptedAnswers.some(
+          (answer) => userCSS === answer.toLowerCase().trim()
+        )
       : false;
   };
 
