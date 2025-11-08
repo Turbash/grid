@@ -31,7 +31,7 @@ const Playground = ({ customCSS, level, mode = "grid", isCorrect }) => {
     const baseStyle = {
       position: "absolute",
       inset: 0,
-      padding: "5rem 4rem", 
+      padding: "5rem 4rem",
     };
 
     if (mode === "flexbox") {
@@ -79,12 +79,12 @@ const Playground = ({ customCSS, level, mode = "grid", isCorrect }) => {
     const baseStyle = {
       position: "absolute",
       inset: 0,
-      padding: "5rem 4rem", 
+      padding: "5rem 4rem",
     };
 
     if (mode === "flexbox") {
       const userCSS = parseCustomCSS(customCSS);
-      
+
       if (isCorrect === true) {
         return { ...baseStyle, ...levelConfig.basketCSS };
       } else {
@@ -158,7 +158,7 @@ const Playground = ({ customCSS, level, mode = "grid", isCorrect }) => {
         }}
       >
         <div className="relative mx-auto h-full w-[98%] max-w-[1000px] lg:ml-0 lg:mr-auto">
-          <div 
+          <div
             style={{
               ...basketContainerStyle,
               zIndex: 1,
@@ -178,11 +178,13 @@ const Playground = ({ customCSS, level, mode = "grid", isCorrect }) => {
               </div>
             ))}
           </div>
-          
-          <div style={{
-            ...fruitContainerStyle,
-            zIndex: 2,
-          }}>
+
+          <div
+            style={{
+              ...fruitContainerStyle,
+              zIndex: 2,
+            }}
+          >
             {levelConfig.fruits.map((fruit, index) => (
               <div
                 key={`fruit-${index}`}

@@ -72,7 +72,7 @@ export const levelConfigs = {
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: "1rem",
     },
-  missingProps: ["grid-template-rows"],
+    missingProps: ["grid-template-rows"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-template-rows: 100px auto 1fr;",
@@ -104,7 +104,7 @@ export const levelConfigs = {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
     },
-  missingProps: ["gap"],
+    missingProps: ["gap"],
     maxLines: 1,
     acceptedAnswers: ["gap: 2rem;", "gap:2rem;", "gap: 2rem", "gap:2rem"],
     fruits: [
@@ -132,7 +132,7 @@ export const levelConfigs = {
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: "1rem",
     },
-  missingProps: ["grid-column"],
+    missingProps: ["grid-column"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-column: 3;",
@@ -159,7 +159,7 @@ export const levelConfigs = {
       gridTemplateRows: "repeat(3, 100px)",
       gap: "1rem",
     },
-  missingProps: ["grid-row"],
+    missingProps: ["grid-row"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-row: 2;",
@@ -187,7 +187,7 @@ export const levelConfigs = {
       gridTemplateRows: "100px 100px",
       gap: "1rem",
     },
-  missingProps: ["grid-auto-rows"],
+    missingProps: ["grid-auto-rows"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-auto-rows: 150px;",
@@ -224,7 +224,7 @@ export const levelConfigs = {
       gridTemplateColumns: "1fr 1fr",
       gap: "1rem",
     },
-  missingProps: ["grid-auto-columns"],
+    missingProps: ["grid-auto-columns"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-auto-columns: 200px;",
@@ -260,7 +260,7 @@ export const levelConfigs = {
       gridTemplateColumns: "repeat(2, 1fr)",
       gap: "1rem",
     },
-  missingProps: ["grid-auto-flow"],
+    missingProps: ["grid-auto-flow"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-auto-flow: column;",
@@ -295,7 +295,7 @@ export const levelConfigs = {
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: "1rem",
     },
-  missingProps: ["justify-items"],
+    missingProps: ["justify-items"],
     maxLines: 1,
     acceptedAnswers: [
       "justify-items: center;",

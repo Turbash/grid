@@ -11,7 +11,7 @@ const fruitImages = {
 
 const FruitItem = ({ type, customStyle = {}, className = "" }) => {
   const fruitImage = fruitImages[type] || fruitImages.apple;
-  
+
   return (
     <div
       id="item"

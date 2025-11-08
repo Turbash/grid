@@ -73,7 +73,7 @@ const FruitGrid = ({
     <div id="container" className={containerClass} style={containerStyle}>
       {fruits.map((fruit, index) => {
         let fruitStyle = {};
-        
+
         if (mode === "flexbox") {
           if (levelConfig.cssTarget === "item") {
             fruitStyle = { ...userCSS };
