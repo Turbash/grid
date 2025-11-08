@@ -759,6 +759,63 @@ export const flexLevelConfigs = {
     containerLayout: "simple",
     cssTarget: "container",
   },
+  19: {
+    instructions:
+      "Use flex properties flex-direction, flex-wrap and align-content to place the fruits in the correct baskets",
+    basketCSS: {
+      display: "flex",
+      flexDirection: "column-reverse",
+      flexWrap: "wrap",
+      alignContent: "center",
+      gap: "1rem",
+      height: "100%",
+      width: "100%",
+    },
+    fruitCSS: {
+      display: "flex",
+      gap: "1rem",
+      height: "100%",
+      width: "100%",
+    },
+    missingProps: [
+      "flex-direction:column-reverse",
+      "flex-wrap:wrap",
+      "align-content:center",
+    ],
+    maxLines: 3,
+    acceptedAnswers: [
+      "flex-direction: column-reverse;\nflex-wrap: wrap;\nalign-content: center;",
+      "flex-direction:column-reverse;\nflex-wrap:wrap;\nalign-content:center;",
+      "flex-direction: column-reverse; flex-wrap: wrap; align-content: center;",
+      "flex-direction:column-reverse; flex-wrap:wrap; align-content:center;",
+      "flex-wrap: wrap;\nflex-direction: column-reverse;\nalign-content: center;",
+      "flex-wrap:wrap;\nflex-direction:column-reverse;\nalign-content:center;",
+      "align-content: center;\nflex-wrap: wrap;\nflex-direction: column-reverse;",
+      "align-content:center;\nflex-wrap:wrap;\nflex-direction:column-reverse;",
+      "align-content: center; flex-wrap: wrap; flex-direction: column-reverse;",
+      "align-content:center; flex-wrap:wrap; flex-direction:column-reverse;",
+    ],
+    fruits: [
+      { type: "apple", initialPosition: 1, correctPosition: 2 },
+      { type: "banana", initialPosition: 2, correctPosition: 3 },
+      { type: "banana", initialPosition: 2, correctPosition: 3 },
+      { type: "grapes", initialPosition: 3, correctPosition: 1 },
+      { type: "apple", initialPosition: 1, correctPosition: 2 },
+      { type: "banana", initialPosition: 2, correctPosition: 3 },
+      { type: "banana", initialPosition: 2, correctPosition: 3 },
+    ],
+    baskets: [
+      { type: "red", position: 2 },
+      { type: "yellow", position: 3 },
+      { type: "yellow", position: 3 },
+      { type: "violet", position: 1 },
+      { type: "red", position: 2 },
+      { type: "yellow", position: 3 },
+      { type: "yellow", position: 3 },
+    ],
+    containerLayout: "simple",
+    cssTarget: "container",
+  },
 };
 
 export const getFlexLevel = (levelNumber) => {
