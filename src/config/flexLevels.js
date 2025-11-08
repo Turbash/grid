@@ -322,10 +322,7 @@ export const flexLevelConfigs = {
       height: "100%",
       width: "100%",
     },
-    missingProps: [
-      "flex-direction:row-reverse",
-      "justify-content:flex-end",
-    ],
+    missingProps: ["flex-direction:row-reverse", "justify-content:flex-end"],
     maxLines: 2,
     acceptedAnswers: [
       "flex-direction: row-reverse;\njustify-content: flex-end;",
@@ -367,10 +364,7 @@ export const flexLevelConfigs = {
       height: "100%",
       width: "100%",
     },
-    missingProps: [
-      "flex-direction:column",
-      "justify-content:flex-end",
-    ],
+    missingProps: ["flex-direction:column", "justify-content:flex-end"],
     maxLines: 2,
     acceptedAnswers: [
       "flex-direction: column;\njustify-content: flex-end;",
@@ -490,7 +484,52 @@ export const flexLevelConfigs = {
     ],
     containerLayout: "simple",
     cssTarget: "container",
-  }
+  },
+  14: {
+    instructions:
+      "Use flex properties to place the fruits in the correct baskets",
+    basketCSS: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: "1rem",
+      height: "100%",
+      width: "100%",
+    },
+    fruitCSS: {
+      display: "flex",
+      gap: "1rem",
+      height: "100%",
+      width: "100%",
+    },
+    missingProps: ["flex-wrap:wrap"],
+    maxLines: 1,
+    acceptedAnswers: [
+      "flex-wrap: wrap;",
+      "flex-wrap:wrap;",
+      "flex-wrap: wrap",
+      "flex-wrap:wrap",
+    ],
+    fruits: [
+      { type: "banana", initialPosition: 1, correctPosition: 2 },
+      { type: "apple", initialPosition: 1, correctPosition: 2 },
+      { type: "apple", initialPosition: 1, correctPosition: 2 },
+      { type: "apple", initialPosition: 1, correctPosition: 2 },
+      { type: "apple", initialPosition: 1, correctPosition: 2 },
+      { type: "apple", initialPosition: 1, correctPosition: 2 },
+      { type: "grapes", initialPosition: 3, correctPosition: 1 },
+    ],
+    baskets: [
+      { type: "yellow", position: 2 },
+      { type: "red", position: 1 },
+      { type: "red", position: 1 },
+      { type: "red", position: 1 },
+      { type: "red", position: 1 },
+      { type: "red", position: 1 },
+      { type: "violet", position: 3 },
+    ],
+    containerLayout: "simple",
+    cssTarget: "container",
+  },
 };
 
 export const getFlexLevel = (levelNumber) => {
