@@ -1,6 +1,7 @@
 import React from "react";
 import FruitItem from "./FruitItem";
 import { getLevel } from "../config/levels";
+import { getFlexLevel } from "../config/flexLevels";
 
 const FruitGrid = ({
   fruits,
@@ -8,9 +9,10 @@ const FruitGrid = ({
   containerClass,
   customCSS,
   level,
+  mode = "grid",
   isCorrect,
 }) => {
-  const levelConfig = getLevel(level);
+  const levelConfig = mode === "grid" ? getLevel(level) : getFlexLevel(level);
 
   const parseCustomCSS = () => {
     const style = {};
@@ -71,20 +73,27 @@ const FruitGrid = ({
     <div id="container" className={containerClass} style={containerStyle}>
       {fruits.map((fruit, index) => {
         let fruitStyle = {};
-        const positionProperty = getPositionProperty();
-
-        if (isCorrect === true) {
+        
+        if (mode === "flexbox") {
           if (levelConfig.cssTarget === "item") {
             fruitStyle = { ...userCSS };
-            fruitStyle[positionProperty] = getPositionValue(fruit, true);
-          } else {
-            fruitStyle[positionProperty] = getPositionValue(fruit, true);
           }
         } else {
-          if (levelConfig.cssTarget === "item") {
-            fruitStyle = { ...userCSS };
+          const positionProperty = getPositionProperty();
+
+          if (isCorrect === true) {
+            if (levelConfig.cssTarget === "item") {
+              fruitStyle = { ...userCSS };
+              fruitStyle[positionProperty] = getPositionValue(fruit, true);
+            } else {
+              fruitStyle[positionProperty] = getPositionValue(fruit, true);
+            }
           } else {
-            fruitStyle[positionProperty] = getPositionValue(fruit, false);
+            if (levelConfig.cssTarget === "item") {
+              fruitStyle = { ...userCSS };
+            } else {
+              fruitStyle[positionProperty] = getPositionValue(fruit, false);
+            }
           }
         }
 

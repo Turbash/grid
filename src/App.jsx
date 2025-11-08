@@ -3,21 +3,62 @@ import Playground from "./components/Playground";
 import Instructions from "./components/Instructions";
 import CSSBox from "./components/CSSBox";
 import { getLevel } from "./config/levels";
+import { getFlexLevel } from "./config/flexLevels";
 
 function App() {
+  const [mode, setMode] = useState("grid");
   const [level, setLevel] = useState(1);
   const [customCSS, setCustomCSS] = useState("");
   const [isCorrect, setIsCorrect] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
   const [isPreviewCorrect, setIsPreviewCorrect] = useState(false);
 
-  const checkIfCorrect = (css) => {
-    const levelConfig = getLevel(level);
-    const userCSS = css.trim().toLowerCase();
+  const getCurrentLevelConfig = () => {
+    return mode === "grid" ? getLevel(level) : getFlexLevel(level);
+  };
 
-    return levelConfig.acceptedAnswers.some(
-      (answer) => userCSS === answer.toLowerCase().trim()
-    );
+  const getMaxLevels = () => {
+    return mode === "grid" ? 10 : 13; 
+  };
+
+  const checkIfCorrect = (css) => {
+    const levelConfig = getCurrentLevelConfig();
+    const userCSS = (css || "").trim().toLowerCase();
+
+    if (Array.isArray(levelConfig.missingProps) && levelConfig.missingProps.length) {
+      const providedDeclarations = new Set();
+      const providedProperties = new Set();
+      const props = userCSS
+        .split(/;|\n/)
+        .map((s) => s.trim())
+        .filter(Boolean);
+      
+      props.forEach((prop) => {
+        const colonIndex = prop.indexOf(':');
+        if (colonIndex > 0) {
+          const key = prop.substring(0, colonIndex).trim();
+          const value = prop.substring(colonIndex + 1).trim();
+          if (key && value) {
+            providedProperties.add(key.toLowerCase());
+            providedDeclarations.add(`${key}:${value}`.toLowerCase().replace(/\s+/g, ''));
+          }
+        }
+      });
+
+      return levelConfig.missingProps.every((req) => {
+        const reqLower = req.toLowerCase().replace(/\s+/g, '');
+        
+        if (req.includes(':')) {
+          return providedDeclarations.has(reqLower);
+        } else {
+          return providedProperties.has(reqLower);
+        }
+      });
+    }
+
+    return Array.isArray(levelConfig.acceptedAnswers)
+      ? levelConfig.acceptedAnswers.some((answer) => userCSS === answer.toLowerCase().trim())
+      : false;
   };
 
   const handleCSSChange = (css) => {
@@ -37,7 +78,8 @@ function App() {
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-        if (level < 10) {
+        const maxLevels = getMaxLevels();
+        if (level < maxLevels) {
           setLevel(level + 1);
           setCustomCSS("");
           setIsCorrect(null);
@@ -58,13 +100,23 @@ function App() {
   };
 
   const handleNextLevel = () => {
-    if (level < 10) {
+    const maxLevels = getMaxLevels();
+    if (level < maxLevels) {
       setLevel(level + 1);
       setCustomCSS("");
       setIsCorrect(null);
       setShowSuccess(false);
       setIsPreviewCorrect(false);
     }
+  };
+
+  const handleModeSwitch = (newMode) => {
+    setMode(newMode);
+    setLevel(1);
+    setCustomCSS("");
+    setIsCorrect(null);
+    setShowSuccess(false);
+    setIsPreviewCorrect(false);
   };
 
   return (
@@ -75,7 +127,9 @@ function App() {
             <div className="mx-auto flex max-w-xl flex-col items-center justify-between md:flex-row">
               <h1 className="text-center font-fredoka text-4xl tracking-wider text-white lg:text-left">
                 <span className="text-[#86ed26]">Fruitbox</span>{" "}
-                <span className="underline decoration-wavy">Grid</span>
+                <span className="underline decoration-wavy">
+                  {mode === "grid" ? "Grid" : "Flex"}
+                </span>
               </h1>
               <p className="mt-6 flex items-center rounded-md bg-gray-500 bg-opacity-25 px-4 py-1 text-gray-300 md:mt-0">
                 <button
@@ -101,7 +155,7 @@ function App() {
                 Level <span className="ml-2 block font-fredoka">{level}</span>
                 <button
                   onClick={handleNextLevel}
-                  disabled={level >= 10}
+                  disabled={level >= getMaxLevels()}
                   className="ml-1 cursor-pointer text-3xl disabled:opacity-50"
                 >
                   <svg
@@ -122,10 +176,34 @@ function App() {
               </p>
             </div>
 
-            <Instructions level={level} />
+            <div className="mx-auto mt-6 flex max-w-md rounded-lg bg-gray-600 p-1">
+              <button
+                onClick={() => handleModeSwitch("grid")}
+                className={`flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                  mode === "grid"
+                    ? "bg-[#86ed26] text-black"
+                    : "text-gray-300 hover:text-white"
+                }`}
+              >
+                CSS Grid
+              </button>
+              <button
+                onClick={() => handleModeSwitch("flexbox")}
+                className={`flex-1 rounded-md px-4 py-2 text-sm font-medium transition-colors ${
+                  mode === "flexbox"
+                    ? "bg-[#86ed26] text-black"
+                    : "text-gray-300 hover:text-white"
+                }`}
+              >
+                Flexbox
+              </button>
+            </div>
+
+            <Instructions level={level} mode={mode} />
             <CSSBox
               onCSSChange={handleCSSChange}
               level={level}
+              mode={mode}
               onSubmit={handleSubmit}
               isCorrect={isCorrect}
             />
@@ -147,6 +225,7 @@ function App() {
           <Playground
             customCSS={customCSS}
             level={level}
+            mode={mode}
             isCorrect={isCorrect !== null ? isCorrect : isPreviewCorrect}
           />
         </div>

@@ -1,8 +1,9 @@
 import React from "react";
 import { getLevel } from "../config/levels";
+import { getFlexLevel } from "../config/flexLevels";
 
-const Instructions = ({ level }) => {
-  const levelConfig = getLevel(level);
+const Instructions = ({ level, mode = "grid" }) => {
+  const levelConfig = mode === "grid" ? getLevel(level) : getFlexLevel(level);
 
   return (
     <p className="mx-auto my-12 max-w-xl text-white">

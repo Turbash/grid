@@ -12,6 +12,7 @@ export const levelConfigs = {
       gap: "1rem",
     },
     placeholder: "display: grid;",
+    missingProps: ["display:grid"],
     maxLines: 1,
     acceptedAnswers: [
       "display: grid;",
@@ -35,7 +36,7 @@ export const levelConfigs = {
       display: "grid",
       gap: "1rem",
     },
-    placeholder: "grid-template-columns: 1fr 1fr 1fr;",
+    missingProps: ["grid-template-columns"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-template-columns: 1fr 1fr 1fr;",
@@ -71,7 +72,7 @@ export const levelConfigs = {
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: "1rem",
     },
-    placeholder: "grid-template-rows: 100px auto 1fr;",
+  missingProps: ["grid-template-rows"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-template-rows: 100px auto 1fr;",
@@ -103,7 +104,7 @@ export const levelConfigs = {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
     },
-    placeholder: "gap: 2rem;",
+  missingProps: ["gap"],
     maxLines: 1,
     acceptedAnswers: ["gap: 2rem;", "gap:2rem;", "gap: 2rem", "gap:2rem"],
     fruits: [
@@ -131,7 +132,7 @@ export const levelConfigs = {
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: "1rem",
     },
-    placeholder: "grid-column: 3;",
+  missingProps: ["grid-column"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-column: 3;",
@@ -158,7 +159,7 @@ export const levelConfigs = {
       gridTemplateRows: "repeat(3, 100px)",
       gap: "1rem",
     },
-    placeholder: "grid-row: 2;",
+  missingProps: ["grid-row"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-row: 2;",
@@ -186,7 +187,7 @@ export const levelConfigs = {
       gridTemplateRows: "100px 100px",
       gap: "1rem",
     },
-    placeholder: "grid-auto-rows: 150px;",
+  missingProps: ["grid-auto-rows"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-auto-rows: 150px;",
@@ -223,7 +224,7 @@ export const levelConfigs = {
       gridTemplateColumns: "1fr 1fr",
       gap: "1rem",
     },
-    placeholder: "grid-auto-columns: 200px;",
+  missingProps: ["grid-auto-columns"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-auto-columns: 200px;",
@@ -259,7 +260,7 @@ export const levelConfigs = {
       gridTemplateColumns: "repeat(2, 1fr)",
       gap: "1rem",
     },
-    placeholder: "grid-auto-flow: column;",
+  missingProps: ["grid-auto-flow"],
     maxLines: 1,
     acceptedAnswers: [
       "grid-auto-flow: column;",
@@ -294,7 +295,7 @@ export const levelConfigs = {
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: "1rem",
     },
-    placeholder: "justify-items: center;",
+  missingProps: ["justify-items"],
     maxLines: 1,
     acceptedAnswers: [
       "justify-items: center;",

@@ -3,6 +3,7 @@ import red_basket from "../assets/red_basket.webp";
 import violet_basket from "../assets/violet_basket.webp";
 import yellow_basket from "../assets/yellow_basket.webp";
 import { getLevel } from "../config/levels";
+import { getFlexLevel } from "../config/flexLevels";
 
 const basketImages = {
   red: red_basket,
@@ -10,14 +11,21 @@ const basketImages = {
   yellow: yellow_basket,
 };
 
-const BasketGrid = ({ baskets, gridStyle, containerClass, level }) => {
-  const levelConfig = getLevel(level);
+const BasketGrid = ({
+  baskets,
+  gridStyle,
+  containerClass,
+  level,
+  mode = "grid",
+}) => {
+  const levelConfig = mode === "grid" ? getLevel(level) : getFlexLevel(level);
 
   const getBasketGridStyle = () => {
     return { ...gridStyle, ...levelConfig.basketCSS };
   };
 
   const getBasketPositioning = (basket, index) => {
+    if (mode === "flexbox") return {};
     if (levelConfig.cssTarget === "item") {
       const correspondingFruit = levelConfig.fruits[index];
       if (correspondingFruit) {
