@@ -18,7 +18,7 @@ function App() {
   };
 
   const getMaxLevels = () => {
-    return mode === "grid" ? 10 : 15;
+    return mode === "grid" ? 10 : 16;
   };
 
   const checkIfCorrect = (css) => {
