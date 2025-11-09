@@ -1,7 +1,7 @@
 export const flexLevelConfigs = {
   1: {
     instructions:
-      "Use justify-content to move fruits to the end of the container!",
+      "Use justify-content to move fruits to the end of the container",
     basketCSS: {
       display: "flex",
       justifyContent: "flex-end",
@@ -30,7 +30,8 @@ export const flexLevelConfigs = {
     cssTarget: "container",
   },
   2: {
-    instructions: "Use justify-content to center fruits in the container!",
+    instructions:
+      "Use flexbox properties to place the fruits in the correct baskets",
     basketCSS: {
       display: "flex",
       justifyContent: "center",
@@ -57,7 +58,7 @@ export const flexLevelConfigs = {
   },
   3: {
     instructions:
-      "Use justify-content to distribute fruits with space around them!",
+      "Use flexbox properties to place the fruits in the correct baskets",
     basketCSS: {
       display: "flex",
       justifyContent: "space-around",
@@ -84,7 +85,7 @@ export const flexLevelConfigs = {
   },
   4: {
     instructions:
-      "Use justify-content to distribute fruits with space between them!",
+      "Use flexbox properties to place the fruits in the correct basket",
     basketCSS: {
       display: "flex",
       justifyContent: "space-between",
@@ -118,7 +119,8 @@ export const flexLevelConfigs = {
     cssTarget: "container",
   },
   5: {
-    instructions: "Use align-items to move fruits to the end vertically!",
+    instructions:
+      "Use flexbox properties to place the fruits in the correct basket",
     basketCSS: {
       display: "flex",
       alignItems: "flex-end",
@@ -154,7 +156,8 @@ export const flexLevelConfigs = {
     cssTarget: "container",
   },
   6: {
-    instructions: "Center fruits both horizontally and vertically!",
+    instructions:
+      "Use flexbox properties to place the fruits in the correct baskets",
     basketCSS: {
       display: "flex",
       justifyContent: "center",
@@ -195,7 +198,8 @@ export const flexLevelConfigs = {
     cssTarget: "container",
   },
   7: {
-    instructions: "Distribute fruits with space around and align to bottom!",
+    instructions:
+      "Use flexbox properties to place the fruits in the correct baskets",
     basketCSS: {
       display: "flex",
       justifyContent: "space-around",
@@ -236,7 +240,8 @@ export const flexLevelConfigs = {
     cssTarget: "container",
   },
   8: {
-    instructions: "Reverse the direction of fruits using flex-direction!",
+    instructions:
+      "Use flexbox properties to place the fruits in the correct baskets",
     basketCSS: {
       display: "flex",
       flexDirection: "row-reverse",
@@ -270,7 +275,8 @@ export const flexLevelConfigs = {
     cssTarget: "container",
   },
   9: {
-    instructions: "Stack fruits vertically using flex-direction!",
+    instructions:
+      "Use flexbox properties to place the fruits in the correct baskets",
     basketCSS: {
       display: "flex",
       flexDirection: "column",

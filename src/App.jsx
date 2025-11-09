@@ -1,17 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Playground from "./components/Playground";
 import Instructions from "./components/Instructions";
 import CSSBox from "./components/CSSBox";
 import { getLevel } from "./config/levels";
 import { getFlexLevel } from "./config/flexLevels";
+import {
+  saveLevelProgress,
+  loadLevelProgress,
+  resetProgress,
+} from "./utils/levelProgress";
 
 function App() {
   const [mode, setMode] = useState("grid");
-  const [level, setLevel] = useState(1);
+  const [level, setLevel] = useState(() => {
+    return loadLevelProgress("grid");
+  });
   const [customCSS, setCustomCSS] = useState("");
   const [isCorrect, setIsCorrect] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
   const [isPreviewCorrect, setIsPreviewCorrect] = useState(false);
+
+  useEffect(() => {
+    const savedLevel = loadLevelProgress(mode);
+    setLevel(savedLevel);
+  }, [mode]);
+
+  useEffect(() => {
+    saveLevelProgress(mode, level);
+  }, [mode, level]);
 
   const getCurrentLevelConfig = () => {
     return mode === "grid" ? getLevel(level) : getFlexLevel(level);
@@ -87,7 +103,9 @@ function App() {
         setShowSuccess(false);
         const maxLevels = getMaxLevels();
         if (level < maxLevels) {
-          setLevel(level + 1);
+          const nextLevel = level + 1;
+          setLevel(nextLevel);
+          saveLevelProgress(mode, nextLevel);
           setCustomCSS("");
           setIsCorrect(null);
           setIsPreviewCorrect(false);
@@ -119,7 +137,6 @@ function App() {
 
   const handleModeSwitch = (newMode) => {
     setMode(newMode);
-    setLevel(1);
     setCustomCSS("");
     setIsCorrect(null);
     setShowSuccess(false);

@@ -25,18 +25,8 @@ const CSSBox = ({ onCSSChange, level, mode = "grid", onSubmit, isCorrect }) => {
   };
 
   useEffect(() => {
-    if (levelConfig && levelConfig.fruitCSS) {
-      const parts = [];
-      Object.keys(levelConfig.fruitCSS).forEach((k) => {
-        const v = levelConfig.fruitCSS[k];
-        const propName = k.replace(/([A-Z])/g, "-$1").toLowerCase();
-        parts.push(`${propName}: ${v};`);
-      });
-      setCSSInput(parts.join("\n"));
-      onCSSChange(parts.join("\n"));
-    } else {
-      setCSSInput("");
-    }
+    setCSSInput("");
+    onCSSChange("");
   }, [level]);
 
   return (
