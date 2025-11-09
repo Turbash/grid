@@ -34,45 +34,7 @@ const Playground = ({ customCSS, level, mode = "grid", isCorrect }) => {
       padding: "5rem 4rem",
     };
 
-    if (mode === "flexbox") {
-      return { ...baseStyle, ...levelConfig.basketCSS };
-    } else {
-      switch (levelConfig.containerLayout) {
-        case "rows":
-        case "auto-rows":
-          return {
-            ...baseStyle,
-            display: "grid",
-            gridTemplateRows: "repeat(3, 1fr)",
-            gridTemplateColumns: "1fr",
-            gap: "1rem",
-          };
-        case "columns":
-        case "auto-columns":
-          return {
-            ...baseStyle,
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gridTemplateRows: "1fr",
-            gap: "1rem",
-          };
-        case "auto-flow":
-          return {
-            ...baseStyle,
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gridTemplateRows: "repeat(2, 100px)",
-            gap: "1rem",
-          };
-        default:
-          return {
-            ...baseStyle,
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1rem",
-          };
-      }
-    }
+    return { ...baseStyle, ...levelConfig.basketCSS };
   };
 
   const getFruitContainerStyle = () => {
@@ -82,50 +44,12 @@ const Playground = ({ customCSS, level, mode = "grid", isCorrect }) => {
       padding: "5rem 4rem",
     };
 
-    if (mode === "flexbox") {
-      const userCSS = parseCustomCSS(customCSS);
+    const userCSS = parseCustomCSS(customCSS);
 
-      if (isCorrect === true) {
-        return { ...baseStyle, ...levelConfig.basketCSS };
-      } else {
-        return { ...baseStyle, ...levelConfig.fruitCSS, ...userCSS };
-      }
+    if (isCorrect === true) {
+      return { ...baseStyle, ...levelConfig.basketCSS };
     } else {
-      switch (levelConfig.containerLayout) {
-        case "rows":
-        case "auto-rows":
-          return {
-            ...baseStyle,
-            display: "grid",
-            gridTemplateRows: "repeat(3, 1fr)",
-            gridTemplateColumns: "1fr",
-            gap: "1rem",
-          };
-        case "columns":
-        case "auto-columns":
-          return {
-            ...baseStyle,
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gridTemplateRows: "1fr",
-            gap: "1rem",
-          };
-        case "auto-flow":
-          return {
-            ...baseStyle,
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gridTemplateRows: "repeat(2, 100px)",
-            gap: "1rem",
-          };
-        default:
-          return {
-            ...baseStyle,
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1rem",
-          };
-      }
+      return { ...baseStyle, ...levelConfig.fruitCSS, ...userCSS };
     }
   };
 
